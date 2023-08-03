@@ -1,6 +1,6 @@
 @import 'normalize.scss';
 
-$color_green: #034940;
+$color_green: hwb(172 1% 71%);
 $color_yellow: #fcdf51;
 $color_gray: #252828;
 $color_lightBlue: #C1D7D4;
@@ -142,14 +142,14 @@ body._noScroll{
 
 //  section2---------------------------------------------
 .page2{
-    min-height: 600px;
-    height: 90vh;
+    //min-height: 600px;
+    //height: 90vh;
     display: flex;
     align-items: center;
-
+    padding: 2rem;
     .left{
         width: 50%;
-        height: 100%;
+        //height: 100%;
         position: relative;
         padding: 7% 5%;
         .title{
@@ -176,7 +176,7 @@ body._noScroll{
     }
     .right{
         width: 50%;
-        height: 100%;
+        height: 40rem;
         position: relative;
 
         .img1{
@@ -219,21 +219,16 @@ body._noScroll{
 //  section3---------------------------------------------
 
 .page3{
-    min-height: 600px;
-    height: 90vh;
+    padding: 2rem;
     display: flex;
     align-items: center;
     .left{
         width: 50%;
-        height: 100%;
+        height: auto;
         position: relative;
         .img3{
-            width: 90%;
-            height: 90%;
-            position: absolute;
-            top: 50%;
-            left:50%;
-            transform:translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
             box-shadow: 0 0 10px $color_green;
             border-radius: .5rem;
             overflow: hidden;
@@ -251,7 +246,7 @@ body._noScroll{
         position: relative;
         padding: 5%;
         .title{
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             font-weight: 700;
             color: $color_gray;
             strong{
@@ -268,6 +263,49 @@ body._noScroll{
         }
 
         
+    }
+
+}
+
+//  section4---------------------------------------------
+
+.page4{
+    min-height: 600px;
+    //height: 90vh;
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+    .left{
+        width: 40%;
+        height: 100%;
+        position: relative;
+        .text_container{
+            background-color: $color_green;
+            color: $color_white;
+            font-size: 1.5rem;
+            font-weight: 500;
+            padding: 2rem;
+            border-radius: .5rem;
+            .title{
+                text-transform: uppercase;
+                font-size: 2.5rem;
+                font-weight: 700;
+                margin-bottom: 2rem;
+            }
+        }
+        }
+    .right{
+        width: 60%;
+        height: 100%;
+        position: relative;
+        padding-left: 10%;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+        }
+   
     }
 
 }
@@ -298,7 +336,7 @@ body._noScroll{
     }
     .selected{
         width: 100%;
-        height: 55%;
+        height: 50vh;
         max-height: 500px;
         margin: 1rem 0;
         display: flex;
@@ -313,7 +351,7 @@ body._noScroll{
                 color: #034940;
             }
             .description{
-                font-size: 1.3rem;
+                font-size: 1.2rem;
                 font-weight: 500;
                 background-color: $color_green;
                 color: $color_white;
@@ -337,35 +375,35 @@ body._noScroll{
                 box-shadow: 0 0 10px $color_green;
             }
             //slide buttons
-        .previous_slide, .next_slide {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            padding: .7rem;
-            color: $color_white;
-            font-weight: bold;
-            font-size: 1rem;
-            transition: 0.6s ease;
-            border-radius: .2rem;
-            transform: translate(0%, -50%);
-            background-color: rgba(3, 73, 64, .5);
-            opacity: 0;
-        }
-        .previous_slide{
-            left: 1.5rem;
-        }
-        .next_slide{
-            right: 1.5rem;
-        }
-        .previous_slide:hover,
-        .next_slide:hover {
-            background-color: rgba(3, 73, 64);
-        }
-        .item {
-            animation-name: fade;
-            animation-duration: 1.5s;
-        }     
+            .previous_slide, .next_slide {
+                cursor: pointer;
+                position: absolute;
+                top: 50%;
+                width: auto;
+                padding: .7rem;
+                color: $color_white;
+                font-weight: bold;
+                font-size: 1rem;
+                transition: 0.6s ease;
+                border-radius: .2rem;
+                transform: translate(0%, -50%);
+                background-color: rgba(3, 73, 64, .5);
+                opacity: 0;
+            }
+            .previous_slide{
+                left: 1.5rem;
+            }
+            .next_slide{
+                right: 1.5rem;
+            }
+            .previous_slide:hover,
+            .next_slide:hover {
+                background-color: rgba(3, 73, 64);
+            }
+            .item {
+                animation-name: fade;
+                animation-duration: 1.5s;
+            }     
         }
         .photo:hover button{
             opacity: 1;
@@ -380,7 +418,8 @@ body._noScroll{
         position: relative;
         div{
             width: 12rem;
-            height: 12rem;
+            height: 25vh;
+            min-height: 10rem;
             overflow: hidden;
             padding: 5px;
            
@@ -414,6 +453,21 @@ body._noScroll{
         height: 2rem;
         background-color: #034940;
     }
+
+}
+
+
+.page7{
+    width: 40rem;
+    height: 40rem;
+    img{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+    }
+    
+
 
 }
 /*
@@ -506,10 +560,14 @@ body._noScroll{
 
 
 @media screen and (min-width: 1621px){
-
+    html{
+        font-size: 30px;
+    }
 }
 @media screen and (min-width: 1367px){
-
+    html{
+        font-size: 20px;
+    }
 }
 @media screen and (max-width: 991px){
     
