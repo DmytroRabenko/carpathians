@@ -1,18 +1,18 @@
 //mob menu
-/*
+
 const mobMenuIcon = document.querySelector('.mob_nav');
 if(mobMenuIcon){
   const nav = document.querySelector('.nav');
   mobMenuIcon.addEventListener('click', () => {
-    document.body.classList.toggle('_noScroll');//щоб не скролився боді при відкритому меню
+    document.body.classList.toggle('_noScroll');
     nav.classList.toggle('_active');
     mobMenuIcon.classList.toggle('_active');
   })
 };
-*/
+
 
 //add class on scroll
-/*
+
 const addClassOnScroll = (elementTag, scrollThreshold, className) => {
   const element = document.querySelector(elementTag);
 
@@ -40,9 +40,10 @@ const addClassOnScroll = (elementTag, scrollThreshold, className) => {
     }
   }
 }  
-addClassOnScroll('header', 1, 'bacground_dark');
-addClassOnScroll('.up_button', 1000, 'hide');
-*/
+addClassOnScroll('.header_content', 1, 'header_active');
+addClassOnScroll('.mob_nav', 1, '_act');
+//addClassOnScroll('.up_button', 1000, 'hide');
+
 
 //fool Screen
 /*
@@ -307,6 +308,13 @@ const showVisitPlaces = (data) => {// if(Array.isArray(data) && data.length > 0)
       img_container.append(galleryImg);
       galleryImg.addEventListener('click', () => {
         currentIndex = i;
+        document.querySelectorAll('.gallery_img').forEach((el) => {
+          if(el.classList.contains('active')){
+            el.classList.remove('active')
+          }
+        })
+        galleryImg.classList.add('active');
+        
         showActivePlace(currentIndex);
       })  
   })
