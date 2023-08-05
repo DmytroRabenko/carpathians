@@ -46,8 +46,8 @@ addClassOnScroll('.up_button', 1000, 'hide');
 
 
 //fool Screen
-/*
-  const zoomPhotos = document.querySelectorAll('.visit_photo');
+
+  const zoomPhotos = document.querySelectorAll('.foolscreen');
 
   if(zoomPhotos.length > 0){
     for(let i = 0; i < zoomPhotos.length; i++){
@@ -57,7 +57,7 @@ addClassOnScroll('.up_button', 1000, 'hide');
       })
     }
   }
-*/
+
 
 //animation
 const animateElements = document.querySelectorAll('._animate');
@@ -182,9 +182,11 @@ const previousSlider = () => {
 let currentIndex = 0;
 const gallery = document.querySelector('.places .gallery');
 const photo = document.querySelector('.places .photo');
+
+
 const currentPhoto = document.createElement('img');
 photo.append(currentPhoto);
-
+//document.querySelector('.places .photo img').classList.add('fool_screen');
 
 const previousSlide = document.querySelector('.previous_slide');
 previousSlide.addEventListener('click', previousSlider);
@@ -194,6 +196,8 @@ nextSlide.addEventListener('click', nextSlider);
 //swipe
 let touchStartX = 0;
 const touchThreshold = 50;
+
+
 
 photo.addEventListener("touchstart", (e) => {
   touchStartX = e.touches[0].clientX;
