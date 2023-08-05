@@ -42,7 +42,7 @@ const addClassOnScroll = (elementTag, scrollThreshold, className) => {
 }  
 addClassOnScroll('.header_content', 1, 'header_active');
 addClassOnScroll('.mob_nav', 1, '_act');
-//addClassOnScroll('.up_button', 1000, 'hide');
+addClassOnScroll('.up_button', 1000, 'hide');
 
 
 //fool Screen
@@ -57,7 +57,7 @@ addClassOnScroll('.mob_nav', 1, '_act');
       })
     }
   }
-
+*/
 
 //animation
 const animateElements = document.querySelectorAll('._animate');
@@ -93,82 +93,12 @@ if (animateElements.length > 0) {
     window.addEventListener('scroll', animeOnScroll);
     setTimeout(animeOnScroll, 1000)
 }
-*/
-//Parallax
-/*
-window.onload = () => {
-  const parallax = document.querySelector('.parallax');
-  //перевіряємо, чи є цей об'єкт
-  if (parallax) {
-      const content = document.querySelector('.content');
-      const topImg = document.querySelector('.top_image');
-      const bottomImg = document.querySelector('.bottom_image');
-      //коефіцієнти переміщення
-      const forTopImg = 40;
-      const forBottomImg = 20;
-      const speedAnimation = 0.05;
-
-      let positionX = 0, positionY = 0, coordXprocent = 0, coordYprocent = 0;
-
-      const setMouseParallaxStyle = () => {
-          const distX = coordXprocent - positionX;
-          const distY = coordYprocent - positionY;
-
-          positionX = positionX + (distX * speedAnimation);
-          positionY = positionY + (distY * speedAnimation);
-          //передаємо стилі
-          topImg.style.transform = `translate(${positionX / forTopImg}%, ${positionY / forTopImg}%)`;
-          bottomImg.style.transform = `translate(${positionX / forBottomImg}%, ${positionY / forBottomImg}%)`;
-          //метод вказує браузеру, що відбудеться анімація, в якості аргумента приймає ф-ю, яка виконається перед анімацією
-          requestAnimationFrame(setMouseParallaxStyle);
-      }
-
-      setMouseParallaxStyle();
-
-      parallax.addEventListener('mousemove', function (e) {
-          //отримуємо ширину і основного блока
-          const parallaxWidth = parallax.offsetWidth;
-          const parallaxHeight = parallax.offsetHeight;
-          //встяновлюємо курсор по середині нульовими кооринатами
-          const coordX = e.pageX - parallaxWidth / 2;
-          const coordY = e.pageY - parallaxHeight / 2;
-          //заповнюємо змінні значеннями в відсотках, яку частину екрана подолав курсор відносно центру
-          coordXprocent = coordX / parallaxWidth * 100;
-          coordYprocent = coordY / parallaxHeight * 100;
-      });
-  }
-}
-*/
-
-//Slider
-/*
-let slideIndex = 1;
-const nextSlide = () => {
-    showSlides(slideIndex += 1);
-}
-const previousSlide = () => {
-    showSlides(slideIndex -= 1);
-}
-const currentSlide = (n) => {
-    showSlides(slideIndex = n);
-}
-const showSlides = (n) => {
-    let slides = document.querySelectorAll(".item");
-    if (n > slides.length) {slideIndex = 1};
-    if (n < 1) {slideIndex = slides.length};
-    for (let slide of slides) {
-        slide.style.display = "none";
-    }
-    slides[slideIndex - 1].style.display = "block";
-}
-document.querySelector('.previous_slide').addEventListener('click', previousSlide);
-document.querySelector('.next_slide').addEventListener('click', nextSlide);
-showSlides(slideIndex);
-setInterval(nextSlide, 7000);
-*/
 
 
 
+
+
+// slider
 const visitPlaces = [
   {
     title: 'Bukovel',
@@ -256,8 +186,6 @@ const currentPhoto = document.createElement('img');
 photo.append(currentPhoto);
 
 
-
-
 const previousSlide = document.querySelector('.previous_slide');
 previousSlide.addEventListener('click', previousSlider);
 const nextSlide = document.querySelector('.next_slide');
@@ -284,9 +212,6 @@ photo.addEventListener("touchend", (e) => {
     showActivePlace(currentIndex);
   }
 }, {passive: true});
-
-
-
 
 
 const showActivePlace = () => {
@@ -320,28 +245,6 @@ const showVisitPlaces = (data) => {// if(Array.isArray(data) && data.length > 0)
   })
   showActivePlace(currentIndex);
 }
-
-
-
-
-
-/*
-function animateSlider() {
-  const slideWidth = slider.children[0].clientWidth;
-  const offset = -slideWidth * slideIndex;
-  isAnimating = true;
-  slider.style.transition = 'transform 0.3s ease';
-  slider.style.transform = `translateX(${offset}px)`;
-  setTimeout(() => {
-    slider.style.transition = '';
-    isAnimating = false;
-  }, 300);
-}
-*/
-
-
-
-
 
 showVisitPlaces(visitPlaces);
 

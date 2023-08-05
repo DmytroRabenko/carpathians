@@ -88,19 +88,26 @@ body._noScroll {
   transition: all ease 0.8s;
 }
 
+._anim_show_left {
+  transform: translate(-100%, 0);
+  opacity: 0;
+  transition: all ease 0.8s;
+}
+
+._anim_show_right {
+  transform: translate(100%, 0);
+  opacity: 0;
+  transition: all ease 0.8s;
+}
+
+._anim_show_left._active,
+._anim_show_right._active,
 ._anim_show._active,
 ._active ._anim_show {
   opacity: 1;
   transform: translate(0px, 0px);
 }
 
-/*
-.blur{
-    background-color: rgb(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(25px); 
-}
-*/
 .green {
   color: #034a40;
 }
@@ -180,6 +187,7 @@ body._noScroll {
 .section {
   width: 100vw;
   height: 100vh;
+  min-height: 500px;
   margin-bottom: 5rem;
 }
 
@@ -189,31 +197,59 @@ body._noScroll {
   background-size: cover;
   background-repeat: no-repeat;
   padding: 0 2rem;
-  min-height: 110vh;
+  height: 110vh;
+  min-height: 550px;
   left: 0;
   right: 0;
   position: relative;
   overflow: hidden;
 }
-.section1 .title {
+.section1 .text_container {
+  width: 100%;
+  height: 12rem;
   position: absolute;
-  top: 60%;
-  left: 2%;
-  background-color: #034a40;
-  padding: 0.5rem 1rem;
-  color: #FFFFFF;
+  top: 50%;
   font-size: 3rem;
   font-weight: 700;
+  text-transform: uppercase;
 }
-.section1 span {
-  position: absolute;
-  top: 75%;
-  left: 20%;
-  background-color: #FFFFFF;
+.section1 .text_container div {
+  height: 4rem;
   padding: 0.5rem 1rem;
-  color: #252828;
+  position: absolute;
+  padding: 0.5rem;
+}
+.section1 .text_container .text1 {
+  width: 7rem;
+  top: 4rem;
+  background-color: rgb(252, 223, 81);
+  text-transform: none;
+  transition: all ease 2s 0.2s;
+}
+.section1 .text_container .text2 {
+  width: 20rem;
+  top: 0;
+  left: 7rem;
+  z-index: 2;
+  color: #FFFFFF;
+  background-color: #034a40;
+  transition: all ease 2s 0.6s;
+}
+.section1 .text_container .text3 {
+  top: 3.5rem;
+  left: 19rem;
+  z-index: 3;
+  background-color: #FFFFFF;
+  transition: all ease 2s 1s;
+}
+.section1 .text_container .text4 {
+  text-transform: none;
   font-size: 2rem;
-  font-weight: 700;
+  right: 4rem;
+  bottom: 0;
+  height: auto;
+  background-color: #FFFFFF;
+  transition: all ease 2s 4s;
 }
 
 .section2 {
@@ -260,7 +296,6 @@ body._noScroll {
   left: 50%;
   transform: translate(-50%, 0%);
   box-shadow: 0 0 10px #034a40;
-  border-radius: 0.5rem;
   overflow: hidden;
 }
 .section2 .right .img1 img {
@@ -279,7 +314,6 @@ body._noScroll {
   left: 0%;
   transform: translate(0%, -50%);
   box-shadow: 0 0 10px #034a40;
-  border-radius: 0.5rem;
   overflow: hidden;
 }
 .section2 .right .img2 img {
@@ -306,7 +340,6 @@ body._noScroll {
   width: 100%;
   height: 100%;
   box-shadow: 0 0 10px #034a40;
-  border-radius: 0.5rem;
   overflow: hidden;
 }
 .section3 .left .img3 img {
@@ -367,7 +400,6 @@ body._noScroll {
   font-size: 1.4rem;
   font-weight: 500;
   padding: 2rem;
-  border-radius: 0.5rem;
 }
 .section4 .left .text_container .title {
   text-transform: uppercase;
@@ -384,13 +416,14 @@ body._noScroll {
   background-position: center;
   background-repeat: no-repeat;
 }
-.section4 .right div {
+.section4 .right figure {
+  display: block;
   position: absolute;
   width: 25%;
   height: 33.3%;
   overflow: hidden;
 }
-.section4 .right div img {
+.section4 .right figure img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
@@ -401,14 +434,17 @@ body._noScroll {
 .section4 .right .img1 {
   right: 25%;
   top: 0;
+  transition: all ease 0.8s 0.2s;
 }
 .section4 .right .img2 {
   right: 0%;
   top: 33.3%;
+  transition: all ease 0.8s 0.6s;
 }
 .section4 .right .img3 {
   right: 25%;
   top: 66.6%;
+  transition: all ease 0.8s 1s;
 }
 
 .section5 {
@@ -425,7 +461,6 @@ body._noScroll {
   font-size: 2.5rem;
   font-weight: 500;
   transition: all ease 0.4s;
-  border-radius: 0.5rem;
 }
 .section5 .title strong {
   color: rgb(252, 223, 81);
@@ -457,7 +492,6 @@ body._noScroll {
   background-color: #034a40;
   color: #FFFFFF;
   padding: 1rem;
-  border-radius: 0.5rem;
 }
 .section5 .selected .photo {
   width: 60%;
@@ -472,7 +506,6 @@ body._noScroll {
      object-fit: cover;
   -o-object-position: center;
      object-position: center;
-  border-radius: 0.5rem;
   box-shadow: 0 0 10px #034a40;
 }
 .section5 .selected .photo .previous_slide, .section5 .selected .photo .next_slide {
@@ -485,16 +518,17 @@ body._noScroll {
   font-weight: bold;
   font-size: 1rem;
   transition: 0.6s ease;
-  border-radius: 0.2rem;
   transform: translate(0%, -50%);
-  background-color: rgba(3, 73, 64, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
   opacity: 0;
 }
 .section5 .selected .photo .previous_slide {
-  left: 1.5rem;
+  left: 2rem;
 }
 .section5 .selected .photo .next_slide {
-  right: 1.5rem;
+  right: 2rem;
 }
 .section5 .selected .photo .previous_slide:hover,
 .section5 .selected .photo .next_slide:hover {
@@ -580,7 +614,6 @@ body._noScroll {
      object-fit: cover;
 }
 
-/*footer start*/
 footer .bg_container {
   margin-top: 2rem;
   background: rgb(252, 223, 81);
@@ -618,6 +651,31 @@ footer .content .contacts a {
 }
 footer .content .contacts a img {
   width: 1.5rem;
+}
+
+/*up_button*/
+.up_button {
+  background-color: rgb(252, 223, 81);
+  background-image: url(../assets/images/tree.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 2rem 2rem;
+  border: 2px solid #FFFFFF;
+  width: 2.5rem;
+  height: 2.5rem;
+  z-index: 20;
+  overflow: hidden;
+  cursor: pointer;
+  position: fixed;
+  left: 2vw;
+  bottom: 4rem;
+  transform: translate(-100vw, 0);
+  transition: all ease 1s;
+  opacity: 1;
+}
+
+.hide {
+  transform: translate(0, 0);
 }
 
 /*
@@ -711,11 +769,11 @@ footer .content .contacts a img {
     left: 0;
     width: 100%;
     background-color: #FFFFFF;
-    background-image: url(../assets/images/human2і.png), url(../assets/images/tree.png);
-    background-size: 100px, 200px;
-    background-position-y: 90%;
-    background-position-x: 90%;
-    background-repeat: no-repeat;
+    background-image: url(../assets/images/human2і.png), url(../assets/images/tree.png), url(../assets/images/bg_repeat.svg);
+    background-size: 100px, 200px, 300px;
+    background-position-y: 90%, 90%, 0;
+    background-position-x: 90%, 90%, 0;
+    background-repeat: no-repeat, no-repeat, repeat;
     color: #000000;
     padding: 8rem 2rem 4rem;
     transition: all ease 0.8s;
@@ -737,6 +795,34 @@ footer .content .contacts a img {
   .header_content .nav._active {
     top: 0;
     box-shadow: 0 0 100px #000000;
+  }
+  .section1 .text_container {
+    top: 55%;
+  }
+  .section1 .text_container .text1 {
+    width: 7rem;
+    top: 0;
+    text-transform: uppercase;
+  }
+  .section1 .text_container .text2 {
+    width: 20rem;
+    top: 4rem;
+    left: 0;
+    z-index: 3;
+  }
+  .section1 .text_container .text3 {
+    top: 7.5rem;
+    left: 6rem;
+    z-index: 2;
+  }
+  .section1 .text_container .text4 {
+    text-transform: none;
+    font-size: 2rem;
+    right: 4rem;
+    bottom: -6rem;
+    height: auto;
+    background-color: #034a40;
+    color: white;
   }
   .section2 {
     flex-direction: column;
@@ -788,13 +874,13 @@ footer .content .contacts a img {
   .section4 .right {
     width: 100%;
   }
-  .section4 .right div {
+  .section4 .right figure {
     position: absolute;
     width: 33.3%;
     height: 25%;
     overflow: hidden;
   }
-  .section4 .right div img {
+  .section4 .right figure img {
     width: 100%;
     height: 100%;
     -o-object-fit: cover;
