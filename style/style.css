@@ -358,7 +358,7 @@ body._noScroll {
   z-index: 2;
   position: absolute;
   left: 2rem;
-  bottom: -50%;
+  bottom: 50%;
   transform: translate(0, 50%);
 }
 .section4 .left .text_container {
@@ -707,10 +707,9 @@ footer .content .contacts a img {
   }
   .header_content .nav {
     position: fixed;
-    top: -60vh;
+    top: -120%;
     left: 0;
     width: 100%;
-    height: 60vh;
     background-color: #FFFFFF;
     background-image: url(../assets/images/human2і.png), url(../assets/images/tree.png);
     background-size: 100px, 200px;
@@ -718,20 +717,22 @@ footer .content .contacts a img {
     background-position-x: 90%;
     background-repeat: no-repeat;
     color: #000000;
-    padding: 8rem 2rem 2rem 2rem;
+    padding: 8rem 2rem 4rem;
     transition: all ease 0.8s;
   }
   .header_content .nav .navbar {
     flex-direction: column;
   }
   .header_content .nav .navbar .nav-item {
-    font-size: 3.5rem;
-    margin: 1rem;
+    font-size: 3rem;
+    margin: 1rem 0;
+    border-left: 5px solid #034a40;
+    padding: 0rem;
   }
   .header_content .nav .navbar .nav-item a {
     color: inherit;
-    padding: 0.5rem;
-    border-left: 5px solid rgb(252, 223, 81);
+    padding-left: 0.5rem;
+    border-bottom: 1px solid rgb(252, 223, 81);
   }
   .header_content .nav._active {
     top: 0;
@@ -739,6 +740,8 @@ footer .content .contacts a img {
   }
   .section2 {
     flex-direction: column;
+    height: auto;
+    border-bottom: 1px solid #034a40;
   }
   .section2 .left {
     width: 100%;
@@ -748,6 +751,7 @@ footer .content .contacts a img {
   }
   .section2 .right {
     width: 100%;
+    min-height: 500px;
   }
   .section2 .right .img1 {
     left: 60%;
@@ -755,6 +759,7 @@ footer .content .contacts a img {
   .section3 {
     flex-direction: column;
     height: auto;
+    border-bottom: 1px solid #034a40;
   }
   .section3 .left {
     width: 100%;
@@ -763,9 +768,14 @@ footer .content .contacts a img {
   .section3 .right {
     width: 100%;
     height: auto;
+    padding: 2rem 0;
+  }
+  .section3 .right .description {
+    padding: 1rem;
   }
   .section4 {
     padding-left: 0;
+    border-bottom: 1px solid #034a40;
   }
   .section4 .left {
     width: 100%;
@@ -803,5 +813,61 @@ footer .content .contacts a img {
   .section4 .right .img3 {
     right: 0%;
     top: 25%;
+  }
+  .section5 {
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  .section5 .places {
+    height: auto;
+  }
+  .section5 .places .gallery {
+    display: none;
+  }
+  .section5 .selected {
+    width: 100%;
+    flex-direction: column-reverse;
+  }
+  .section5 .selected .text {
+    width: 100%;
+  }
+  .section5 .selected .text h5 {
+    margin: 0;
+    padding: 1rem;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin: 0 auto;
+    transform: translate(0, -100%);
+    z-index: 10;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+    color: #FFFFFF;
+    font-weight: 500;
+  }
+  .section5 .selected .text .description {
+    transform: translate(0, -1rem);
+  }
+  .section5 .selected .photo {
+    width: 100%;
+    height: 50vh;
+    min-height: 250px;
+    padding: 0;
+    position: relative;
+  }
+}
+@media screen and (max-width: 767px) {
+  .header_content .nav .navbar .nav-item {
+    font-size: 2.5rem;
+  }
+}
+@media screen and (max-width: 576px) {
+  .header_content .nav .navbar .nav-item {
+    font-size: 2rem;
+  }
+  .section2 .right {
+    min-height: 0;
+    height: 50vh;
   }
 }/*# sourceMappingURL=style.css.map */

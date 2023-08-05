@@ -319,7 +319,7 @@ body._noScroll{
         z-index: 2;
         position: absolute;
         left: 2rem;
-        bottom: -50%;
+        bottom: 50%;
         transform: translate(0, 50%);
         .text_container{
             background-color: $color_green;
@@ -617,7 +617,6 @@ footer{
         font-size: 14px;
     }
 }
-
 @media screen and (max-width: 991px){
 
     .header_content{
@@ -690,10 +689,10 @@ footer{
         }
         .nav{
             position: fixed;
-            top: -60vh;
+            top: -120%;
             left: 0;
             width: 100%;
-            height: 60vh;
+           // height: 60vh;
             background-color: $color_white;
             background-image: url(../assets/images/human2і.png), url(../assets/images/tree.png);
             background-size: 100px, 200px;
@@ -701,17 +700,21 @@ footer{
             background-position-x: 90%;
             background-repeat: no-repeat;
             color: $color_black;
-            padding: 8rem 2rem 2rem 2rem;
+            padding: 8rem 2rem 4rem;
             transition: all ease .8s;
             .navbar{
                 flex-direction: column;
                 .nav-item{
-                    font-size: 3.5rem;
-                    margin: 1rem;
+                    font-size: 3rem;
+                    margin: 1rem 0;
+                    border-left: 5px solid $color_green;
+                   // border-bottom: 1px solid $color_yellow;
+                    padding: 0rem;
                     a{
                         color: inherit;
-                        padding: .5rem;
-                        border-left: 5px solid $color_yellow
+                        padding-left: .5rem;
+                        border-bottom: 1px solid $color_yellow;
+                        //border-left: 5px solid $color_yellow
                     }
                 }
                 
@@ -724,6 +727,8 @@ footer{
     }
     .section2{
         flex-direction: column;
+        height: auto;
+        border-bottom: 1px solid $color_green;
         .left{
             width: 100%;
             .title{
@@ -732,6 +737,7 @@ footer{
         }
         .right{
             width: 100%;
+            min-height: 500px;
             .img1{
                 left: 60%;
             }
@@ -740,6 +746,7 @@ footer{
     .section3{
         flex-direction: column;
         height: auto;
+        border-bottom: 1px solid $color_green;
         .left{
             width: 100%;
             height: 50%;
@@ -748,10 +755,15 @@ footer{
         .right{
             width: 100%;
             height: auto;
+            padding: 2rem 0;
+            .description{
+                padding: 1rem;
+            }
         }
     }
     .section4{
         padding-left: 0;
+        border-bottom: 1px solid $color_green;
         .left{
            width: 100%;
            height: fit-content;
@@ -787,12 +799,68 @@ footer{
             }
         }
     }
+    .section5{
+        height: fit-content;
+        .places{
+            height: auto;
+            .gallery{
+                display: none;
+            }
+        }
 
-
-
+        .selected{
+            width: 100%;
+            flex-direction: column-reverse;
+            
+            .text{
+                width: 100%;
+                h5{
+                    margin: 0;
+                    padding: 1rem;
+                    width: fit-content;
+                    margin: 0 auto;
+                    transform: translate(0, -100%);
+                    z-index: 10;
+                    position: relative;
+                    background-color: rgb(0, 0, 0, 0.5);
+                    backdrop-filter: blur(10px); 
+                    color: $color_white;
+                    font-weight: 500;
+                }
+                .description{
+                   // font-size: 1.2rem;
+                   // font-weight: 500;
+                    //background-color: $color_green;
+                   // color: $color_white;
+                    //padding: 1rem;
+                   // border-radius: .5rem;
+                    transform: translate(0, -1rem);
+                }
+            }
+            .photo{
+                width: 100%;
+                height: 50vh;
+                min-height: 250px;
+                padding: 0;
+                position: relative;
+            }
+        }
+    }
 }
-@media screen and (max-width: 767px){}
-
+@media screen and (max-width: 767px){
+    .header_content .nav .navbar .nav-item {
+        font-size: 2.5rem;
+    }
+}
 @media screen and (max-width: 576px){
-   
+   .header_content .nav .navbar .nav-item {
+    font-size: 2rem;
+    }
+    .section2{
+        .right{
+            min-height: 0;
+            height: 50vh;
+        }
+    }
+
 }
