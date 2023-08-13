@@ -43,6 +43,10 @@ body._noScroll{
         }
 }
 
+.hide{
+    display: none;
+}
+
 
 //класи для анімації
 ._anim_show{
@@ -251,7 +255,7 @@ body._noScroll{
             font-weight: 500;
             margin-top: 2rem;
             strong{
-                color: $color_yellow;
+                color: $color_green;
                 font-weight: 700;
             }
         }
@@ -557,13 +561,152 @@ body._noScroll{
 
 .section6{
     width: 100%;
-    margin-top: 2rem; 
-    .stop{
+    padding: 0;
+    height: auto;
+    .line{
         width: 100%;
         height: 2rem;
         background-color: #034940;
-        background-image: url(../assets/);
+        background-image: url(../assets/images/ornament_white.svg);
+        background-size: contain;  
     }
+    .title{
+        width: fit-content;
+        margin: 2rem auto 0;
+        padding: 1rem 2rem;
+        font-size: 2.2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        background-color: $color_green;
+        color: $color_white;
+    }
+    .images_bank{
+        position: relative;
+        padding: 2rem 8rem;
+        button{
+            position: absolute;
+            bottom: 0;
+            left: 50%; 
+            font-size: 8rem;
+            background: inherit;
+            color: rgb(255, 255, 255, 0.7);
+            z-index: 2;
+        }
+        .show_less{ 
+            rotate: -90deg;
+            animation: arrowUp 2s  ease-in-out infinite forwards;
+            transform: translate(0, -14%);
+        }
+        .show_more{     
+            rotate: 90deg;
+            animation: arrowDown 2s  ease-in-out infinite forwards;
+            transform: translate(0, 14%);
+        }
+    }
+
+
+    .images_wrapper{
+        width: 100%;
+        height: fit-content;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        div{
+            width: 100%;
+            height: 70vh;
+            min-height: 500px;
+            padding: .2rem;
+            overflow: hidden;
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+                cursor: pointer;
+            }
+        }
+    }
+}
+/* Стилі для повноекранного контейнера зображення */
+#fullscreenImageContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    .content{
+        position: relative;
+    }
+
+    #fullscreenImage {
+        max-width: 100%;
+        max-height: 100%;
+        margin: 0 auto;
+    }
+
+    #closeFullscreenBtn {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        color: #fff;
+        cursor: pointer;
+    }
+    button{
+        position: absolute;
+        top: 50%;
+        width: fit-content;
+        font-size: 5rem;
+        padding: 1rem;
+        background: inherit;
+        color: rgb(255, 255, 255, 0.7);
+        z-index: 2;
+        transform: translate(0, -50%);
+    }
+    #prevImageBtn{
+        left: 0;
+    }
+    #nextImageBtn{
+        right: 0;
+    }
+}
+
+
+
+
+@keyframes arrowDown{
+    0%{
+        opacity: 0;
+        bottom: 4rem;
+    }
+    50%{
+        opacity: 1;
+
+    }
+    100%{
+        opacity: 0;
+        bottom: 1rem;
+    }
+}
+@keyframes arrowUp{
+    0%{
+        opacity: 0;
+        bottom: 1rem;
+    }
+    50%{
+        opacity: 1;
+
+    }
+    100%{
+        opacity: 0;
+        bottom: 4rem;
+    }
+}
+.hide{
+    display: none;
 }
 
 
@@ -603,6 +746,10 @@ body._noScroll{
 .footer{
     margin-top: 2rem;
     background: $color_yellow;
+    background-image: url(../assets/images/ornament_white.svg);
+    background-position: 60vw;
+    background-size: contain;
+    background-repeat: no-repeat;
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -733,7 +880,6 @@ body._noScroll{
     }
 }
 @media screen and (max-width: 991px){
-
     .header_content{
         .logo a{
             font-size: 1.8rem;
@@ -984,6 +1130,18 @@ body._noScroll{
             }
         }
     }
+    
+.section6{
+    .images_bank{
+        padding: 2rem;
+    }
+    .images_wrapper{
+        grid-template-columns: repeat(2, 1fr);
+        div{
+            min-height: 350px;
+        }
+    }
+}
     .section7{
         max-height: 50vh;
     }
@@ -1033,6 +1191,19 @@ body._noScroll{
     .section4{
         height: 115vh;
         padding: 0;
+    }
+    .section6{
+        padding: 0;
+        .images_bank{
+            padding: 1rem;
+        }
+        .images_wrapper{
+            grid-template-columns: repeat(2, 1fr);
+            div{
+                height: 60%;
+                min-height: 300px;
+            }
+        }
     }
     .section7{
         max-height: 40vh;
