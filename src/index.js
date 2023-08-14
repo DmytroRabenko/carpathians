@@ -113,8 +113,32 @@ const data = {
   ]
 }
 
-//mob menu
 
+
+//  for swipe, before/next image
+let touchSwipeStartX = 0;//point start swipe
+const touchSwipeThreshold = 30;//swipe checkpoint
+
+const fnForTouchStart = (e) => {
+  touchStartX = e.touches[0].clientX;
+}
+
+const fnForTouchEnd = (before, next) => {
+  let touchEndX = event.changedTouches[0].clientX;
+  const deltaX = touchEndX - touchStartX;
+
+  if (Math.abs(deltaX) >= touchSwipeThreshold) {
+    if (deltaX > 0) {
+      before();
+    } else {
+      next();
+    }
+  }
+}
+
+
+
+//mob menu
 const mobMenuIcon = document.querySelector('.mob_nav');
 if(mobMenuIcon){
   const nav = document.querySelector('.nav');
@@ -127,7 +151,6 @@ if(mobMenuIcon){
 
 
 //add class on scroll
-
 const addClassOnScroll = (elementTag, scrollThreshold, className) => {
   const element = document.querySelector(elementTag);
 
@@ -196,16 +219,17 @@ if (animateElements.length > 0) {
 }
 
 
-// slider
 
-const nextSlider = () => {
-  if(currentIndex < 9){
-    showActivePlace(currentIndex += 1);
-  }
-  else{
-    showActivePlace(currentIndex = 1);
-  }
-}
+//  Must visit spots slider
+let currentIndex = 0;
+const gallery = document.querySelector('.places .gallery');
+const photo = document.querySelector('.places .photo');
+const currentPhoto = document.createElement('img');
+photo.append(currentPhoto);
+const previousSlideBtn = document.querySelector('.previous_slide');
+const nextSlideBtn = document.querySelector('.next_slide');
+
+
 const previousSlider = () => {
   if(currentIndex > 1){
     showActivePlace(currentIndex -= 1);
@@ -214,52 +238,21 @@ const previousSlider = () => {
     showActivePlace(currentIndex = 9);
   }
 }
-
-let currentIndex = 0;
-const gallery = document.querySelector('.places .gallery');
-const photo = document.querySelector('.places .photo');
-
-const currentPhoto = document.createElement('img');
-photo.append(currentPhoto);
-
-const previousSlide = document.querySelector('.previous_slide');
-previousSlide.addEventListener('click', previousSlider);
-const nextSlide = document.querySelector('.next_slide');
-nextSlide.addEventListener('click', nextSlider);
-
-
-//swipe
-let touchStartX = 0;
-const touchThreshold = 50;
-
-photo.addEventListener("touchstart", (e) => {
-  touchStartX = e.touches[0].clientX;
-}, {passive: true});
-
-photo.addEventListener("touchend", (e) => {
-  const touchEndX = e.changedTouches[0].clientX;
-  const deltaX = touchEndX - touchStartX;
-
-  if (Math.abs(deltaX) >= touchThreshold) {
-    if (deltaX > 0) {
-      nextSlider();
-    } else {
-      previousSlider();
-    }
-    showActivePlace(currentIndex);
+const nextSlider = () => {
+  if(currentIndex < 9){
+    showActivePlace(currentIndex += 1);
   }
-}, {passive: true});
-
-
-const showActivePlace = () => {
-    currentPhoto.src = data.visitPlaces[currentIndex].url;
-    currentPhoto.alt = data.visitPlaces[currentIndex].title;
-    document.querySelector('.places .h5').textContent = data.visitPlaces[currentIndex].title;
-    document.querySelector('.places .description').textContent = data.visitPlaces[currentIndex].description; 
+  else{
+    showActivePlace(currentIndex = 1);
+  }
 }
-
-const showVisitPlaces = (data) => {// if(Array.isArray(data) && data.length > 0){
-
+const showActivePlace = () => {
+  currentPhoto.src = data.visitPlaces[currentIndex].url;
+  currentPhoto.alt = data.visitPlaces[currentIndex].title;
+  document.querySelector('.places .h5').textContent = data.visitPlaces[currentIndex].title;
+  document.querySelector('.places .description').textContent = data.visitPlaces[currentIndex].description; 
+}
+const showVisitPlaces = (data) => {
   data.forEach((el, i) => {
       const img_container = document.createElement('div');
       const galleryImg = document.createElement('img');
@@ -280,15 +273,23 @@ const showVisitPlaces = (data) => {// if(Array.isArray(data) && data.length > 0)
         showActivePlace(currentIndex);
       })  
   })
-  showActivePlace(currentIndex);
+showActivePlace(currentIndex);
 }
+
+previousSlideBtn.addEventListener('click', previousSlider);
+nextSlideBtn.addEventListener('click', nextSlider);
+//swipe
+photo.addEventListener("touchstart", fnForTouchStart, {passive: true});
+photo.addEventListener("touchend", () => {
+  fnForTouchEnd(previousSlider, nextSlider), {passive: true}
+});
 
 showVisitPlaces(data.visitPlaces);
 
 
 
-// images bank
 
+// Images bank
 const imagesBank = document.querySelector(".images_wrapper");
 const showMore = document.querySelector(".show_more");
 const showLess = document.querySelector(".show_less");
@@ -305,12 +306,9 @@ const displayImages = (startIndex, endIndex) => {
         galleryImg.alt = `Carpathian montains imagebank img${num ++}`;
         imagesBank.append(imgContainer);
         imgContainer.append(galleryImg);
-
         galleryImg.addEventListener('click', () => {
           showFullscreenImageByIndex(i);
         })
-        
-
     }
   }
 }
@@ -320,8 +318,8 @@ const showLessImages = () => {
     imagesToShow = 6;
     imagesBank.innerHTML = ""; // Очищуємо контейнер перед виведенням нових зображень
     displayImages(0, imagesToShow);
-    showLess.classList.toggle('hide');
-    showMore.classList.toggle('hide');
+    showLess.classList.toggle('_hide');
+    showMore.classList.toggle('_hide');
 }
 // Функція для обробки кнопки "Показати більше зображень"
 const showMoreImages = () => {
@@ -329,8 +327,8 @@ const showMoreImages = () => {
   displayImages(imagesToShow, newEndIndex);
   imagesToShow = newEndIndex;
   if (imagesToShow == data.imageBank.length) {//перевірка, чи всі зображення вже показані
-    showLess.classList.toggle('hide');
-    showMore.classList.toggle('hide');
+    showLess.classList.toggle('_hide');
+    showMore.classList.toggle('_hide');
   }
 }
 
@@ -341,44 +339,89 @@ displayImages(0, imagesToShow);
 
 
 //Відображення зображення в повноекранному режимі
-
 let currentImageIndex = 0;
+let isZoomed = false;
 const fullscreenImageContainer = document.getElementById("fullscreenImageContainer");
+const fullscreenImageContent = document.querySelector("#fullscreenImageContainer .content");
 const fullscreenImage = document.getElementById("fullscreenImage");
 const closeFullscreenBtn = document.getElementById("closeFullscreenBtn");
 const prevImageBtn = document.querySelector('#prevImageBtn');
 const nextImageBtn = document.querySelector('#nextImageBtn');
 
-
 // Функція для відображення зображення в повноекранному режимі
-function showFullscreenImage(imageSrc) {
-  fullscreenImage.src = imageSrc;
-  fullscreenImageContainer.classList.remove("hide");
-}
-
-// Функція для відображення конкретного зображення в повноекранному режимі
-function showFullscreenImageByIndex(index) {
+const showFullscreenImageByIndex = (index) => {
   const imageSrc = data.imageBank[index][0];
-  showFullscreenImage(imageSrc);
+  fullscreenImage.src = imageSrc;
+  fullscreenImageContainer.classList.remove("_hide");
   currentImageIndex = index;
+  document.body.classList.add('_noScroll');
+}
+//попереднє зображення
+const showPrevImage = () => {
+  if (currentImageIndex > 0) {
+    showFullscreenImageByIndex(currentImageIndex - 1);
+  }
+}
+//наступне зображення
+const showNextImage = () => {
+  if (currentImageIndex < data.imageBank.length - 1) {
+    showFullscreenImageByIndex(currentImageIndex + 1);
+  }
+}
+// Функція для зміни стану зуму
+const toggleZoom = () => {
+  isZoomed = !isZoomed;
+  if (isZoomed) {
+    fullscreenImage.classList.add("_zoomed");
+    fullscreenImageContent.classList.add('_scroll')
+  } else {
+    fullscreenImage.classList.remove("_zoomed");
+    fullscreenImageContent.classList.remove('_scroll')
+  }
 }
 
-// Обробники події click для кнопок
+// Обробники подій
 closeFullscreenBtn.addEventListener('click', () => {
-  fullscreenImageContainer.classList.add("hide");
+  fullscreenImageContainer.classList.add("_hide");
 })
-prevImageBtn.addEventListener("click", () => {
-  if (currentImageIndex > 0) {
-      showFullscreenImageByIndex(currentImageIndex - 1);
-  }
-});
-nextImageBtn.addEventListener("click", () => {
-  if (currentImageIndex < data.imageBank.length - 1) {
-      showFullscreenImageByIndex(currentImageIndex + 1);
-  }
+fullscreenImage.addEventListener("dblclick", toggleZoom);
+prevImageBtn.addEventListener("click", showPrevImage);
+nextImageBtn.addEventListener("click", showNextImage);
+//swipe
+fullscreenImageContainer.addEventListener("touchstart", fnForTouchStart, {passive: true});
+fullscreenImageContainer.addEventListener("touchend", () => {
+  fnForTouchEnd(showPrevImage, showNextImage), {passive: true}
 });
 
 
 
 
+let initialDistance = 0;
+let currentScale = 1;
 
+// Функція для обчислення відстані між двома точками
+function getDistance(touch1, touch2) {
+    const deltaX = touch2.clientX - touch1.clientX;
+    const deltaY = touch2.clientY - touch1.clientY;
+    return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+}
+
+// Обробник подій touchstart, touchmove і touchend
+fullscreenImage.addEventListener("touchstart", (event) => {
+    if (event.touches.length === 2) {
+        initialDistance = getDistance(event.touches[0], event.touches[1]);
+    }
+}, {passive: true});
+
+fullscreenImage.addEventListener("touchmove", (event) => {
+    if (event.touches.length === 2) {
+        const currentDistance = getDistance(event.touches[0], event.touches[1]);
+        const scaleChange = currentDistance / initialDistance;
+        currentScale *= scaleChange;
+        fullscreenImage.style.transform = `scale(${currentScale})`;
+    }
+}, {passive: true});
+
+fullscreenImage.addEventListener("touchend", () => {
+    initialDistance = 0;
+}, {passive: true});
