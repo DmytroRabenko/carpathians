@@ -390,8 +390,10 @@ nextImageBtn.addEventListener("click", showNextImage);
 //swipe
 fullscreenImageContainer.addEventListener("touchstart", fnForTouchStart, {passive: true});
 fullscreenImageContainer.addEventListener("touchend", () => {
-  fnForTouchEnd(showPrevImage, showNextImage), {passive: true}
-});
+  if(!isZoomed){
+    fnForTouchEnd(showPrevImage, showNextImage);
+  }
+}, {passive: true});
 
 
 
