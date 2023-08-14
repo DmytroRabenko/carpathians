@@ -395,7 +395,7 @@ fullscreenImageContainer.addEventListener("touchend", () => {
 
 
 
-
+/*
 let initialDistance = 0;
 let currentScale = 1;
 
@@ -425,3 +425,4 @@ fullscreenImage.addEventListener("touchmove", (event) => {
 fullscreenImage.addEventListener("touchend", () => {
     initialDistance = 0;
 }, {passive: true});
+*/
