@@ -122,7 +122,6 @@ const touchSwipeThreshold = 30;//swipe checkpoint
 const fnForTouchStart = (e) => {
   touchStartX = e.touches[0].clientX;
 }
-
 const fnForTouchEnd = (before, next) => {
   let touchEndX = event.changedTouches[0].clientX;
   const deltaX = touchEndX - touchStartX;
@@ -140,13 +139,30 @@ const fnForTouchEnd = (before, next) => {
 
 //mob menu
 const mobMenuIcon = document.querySelector('.mob_nav');
+
 if(mobMenuIcon){
   const nav = document.querySelector('.nav');
-  mobMenuIcon.addEventListener('click', () => {
+  const links = document.querySelectorAll('.nav-link');
+  const navBar = document.querySelector('.navbar');
+
+  const changeMobMenuVisible = () => {
     document.body.classList.toggle('_noScroll');
     nav.classList.toggle('_active');
     mobMenuIcon.classList.toggle('_active');
+  }
+
+  mobMenuIcon.addEventListener('click', changeMobMenuVisible);
+  links.forEach((link) => {
+    link.addEventListener('click', changeMobMenuVisible)
   })
+
+  // click outside the nav
+  const handleClickOutside = (event) => {
+    if (!navBar.contains(event.target)) {
+        changeMobMenuVisible()
+    }
+  }
+  nav.addEventListener('click', handleClickOutside);
 };
 
 
@@ -383,6 +399,7 @@ const toggleZoom = () => {
 // Обробники подій
 closeFullscreenBtn.addEventListener('click', () => {
   fullscreenImageContainer.classList.add("_hide");
+  document.body.classList.remove('_noScroll');
 })
 fullscreenImage.addEventListener("dblclick", toggleZoom);
 prevImageBtn.addEventListener("click", showPrevImage);
@@ -395,36 +412,3 @@ fullscreenImageContainer.addEventListener("touchend", () => {
   }
 }, {passive: true});
 
-
-
-/*
-let initialDistance = 0;
-let currentScale = 1;
-
-// Функція для обчислення відстані між двома точками
-function getDistance(touch1, touch2) {
-    const deltaX = touch2.clientX - touch1.clientX;
-    const deltaY = touch2.clientY - touch1.clientY;
-    return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-}
-
-// Обробник подій touchstart, touchmove і touchend
-fullscreenImage.addEventListener("touchstart", (event) => {
-    if (event.touches.length === 2) {
-        initialDistance = getDistance(event.touches[0], event.touches[1]);
-    }
-}, {passive: true});
-
-fullscreenImage.addEventListener("touchmove", (event) => {
-    if (event.touches.length === 2) {
-        const currentDistance = getDistance(event.touches[0], event.touches[1]);
-        const scaleChange = currentDistance / initialDistance;
-        currentScale *= scaleChange;
-        fullscreenImage.style.transform = `scale(${currentScale})`;
-    }
-}, {passive: true});
-
-fullscreenImage.addEventListener("touchend", () => {
-    initialDistance = 0;
-}, {passive: true});
-*/

@@ -628,6 +628,7 @@ body._noScroll {
   width: 100%;
   padding: 0;
   height: auto;
+  /* Стилі для повноекранного контейнера зображення */
 }
 .section6 .line {
   width: 100%;
@@ -693,9 +694,7 @@ body._noScroll {
      object-position: center;
   cursor: pointer;
 }
-
-/* Стилі для повноекранного контейнера зображення */
-#fullscreenImageContainer {
+.section6 #fullscreenImageContainer {
   position: fixed;
   top: 0;
   left: 0;
@@ -706,26 +705,26 @@ body._noScroll {
   padding: 1rem;
   overflow: hidden;
 }
-#fullscreenImageContainer .content {
+.section6 #fullscreenImageContainer .content {
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-#fullscreenImageContainer #fullscreenImage {
+.section6 #fullscreenImageContainer #fullscreenImage {
   max-width: 100%;
   max-height: 100%;
   margin: 0 auto;
   cursor: zoom-in;
   transition: transform 0.2s ease-in-out;
 }
-#fullscreenImageContainer #fullscreenImage._zoomed {
+.section6 #fullscreenImageContainer #fullscreenImage._zoomed {
   cursor: zoom-out;
   max-width: none;
   max-height: none;
 }
-#fullscreenImageContainer button {
+.section6 #fullscreenImageContainer button {
   position: absolute;
   width: -moz-fit-content;
   width: fit-content;
@@ -737,20 +736,19 @@ body._noScroll {
   transform: translate(0, -50%);
   cursor: pointer;
 }
-#fullscreenImageContainer #closeFullscreenBtn {
+.section6 #fullscreenImageContainer #closeFullscreenBtn {
   font-size: 4rem;
   top: 2rem;
   right: 1rem;
 }
-#fullscreenImageContainer #prevImageBtn {
+.section6 #fullscreenImageContainer #prevImageBtn {
   top: 50%;
   left: 0;
 }
-#fullscreenImageContainer #nextImageBtn {
+.section6 #fullscreenImageContainer #nextImageBtn {
   top: 50%;
   right: 0;
 }
-
 @keyframes arrowDown {
   0% {
     opacity: 0;
@@ -777,11 +775,13 @@ body._noScroll {
     bottom: 4rem;
   }
 }
+
 .section7 {
   height: 100vh;
   max-height: 700px;
   min-height: 300px;
   padding: 2rem;
+  overflow: hidden;
 }
 .section7 .title {
   display: inline-block;
@@ -805,6 +805,44 @@ body._noScroll {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.section8 .title {
+  width: 100%;
+  padding: 1rem 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 2rem;
+  text-align: center;
+  background-color: #034a40;
+}
+.section8 .title span {
+  color: rgb(252, 223, 81);
+}
+.section8 .content {
+  padding: 2rem;
+}
+.section8 .content .item {
+  font-size: 1.5rem;
+}
+.section8 .content .item .question {
+  display: block;
+  margin-bottom: 1rem;
+  background-color: rgb(252, 223, 81);
+  padding: 0.5rem;
+  font-weight: 700;
+}
+.section8 .content .item p {
+  padding: 0 0.5rem;
+  margin: 1rem;
+  font-weight: 500;
+  border-left: 5px solid #034a40;
+}
+.section8 .content .item p span {
+  padding: 0 0.5rem;
+  background-color: #034a40;
+  color: #FFFFFF;
 }
 
 .footer {
@@ -1004,18 +1042,21 @@ body._noScroll {
     top: -120%;
     left: 0;
     width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    color: #000000;
+    opacity: 0;
+    transition: all ease 0.8s;
+  }
+  .header_content .nav .navbar {
+    flex-direction: column;
+    padding: 8rem 2rem 4rem;
     background-color: #FFFFFF;
     background-image: url(../assets/images/human2і.png), url(../assets/images/tree.png), url(../assets/images/bg_repeat.svg);
     background-size: 100px, 200px, 300px;
     background-position-y: 90%, 90%, 0;
     background-position-x: 90%, 90%, 0;
     background-repeat: no-repeat, no-repeat, repeat;
-    color: #000000;
-    padding: 8rem 2rem 4rem;
-    transition: all ease 0.8s;
-  }
-  .header_content .nav .navbar {
-    flex-direction: column;
   }
   .header_content .nav .navbar .nav-item {
     font-size: 3rem;
@@ -1031,6 +1072,7 @@ body._noScroll {
   .header_content .nav._active {
     top: 0;
     box-shadow: 0 0 100px #000000;
+    opacity: 1;
   }
   .section1 .text_container {
     top: 55%;
@@ -1218,6 +1260,9 @@ body._noScroll {
   }
 }
 @media screen and (max-width: 576px) {
+  html {
+    font-size: 12px;
+  }
   .header_content .nav .navbar .nav-item {
     font-size: 2rem;
   }
@@ -1244,13 +1289,5 @@ body._noScroll {
   .section6 .images_wrapper div {
     height: 60%;
     min-height: 300px;
-  }
-  .section7 {
-    max-height: 40vh;
-  }
-}
-@media screen and (max-width: 576px) {
-  html {
-    font-size: 12px;
   }
 }/*# sourceMappingURL=style.css.map */
