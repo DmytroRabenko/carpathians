@@ -7,6 +7,10 @@ $color_lightBlue: #C1D7D4;
 $color_white: #FFFFFF;
 $color_black: #000000;
 
+html{
+    scroll-behavior: smooth;
+}
+
 body{
     font-family: 'Roboto', sans-serif;
     overflow-x: hidden;
@@ -25,8 +29,12 @@ body._noScroll{
 
 .wrapper{
     width: 100vw;
-    min-height: 100vh;
     overflow: hidden;
+    background-color: $color_white;
+    background-image: url(../assets/images/bg_repeat.svg);
+    background-size: contain;
+    background-repeat: repeat;
+    background-position: top;
 }
 
 
@@ -160,11 +168,6 @@ body._noScroll{
 //  main--------------------------
 .main_container{
     width: 100%;
-    background-color: $color_white;
-    background-image: url(../assets/images/bg_repeat.svg);
-    background-size: contain;
-    background-repeat: repeat;
-    background-position: top;
     overflow: hidden;
 }
 .section{
@@ -316,7 +319,6 @@ body._noScroll{
 
 
 //  section3---------------------------------------------
-
 .section3{
     padding: 0 2rem;
     display: flex;
@@ -370,7 +372,6 @@ body._noScroll{
 
 
 //  section4---------------------------------------------
-
 .section4{
     padding-left: 2rem;
     display: flex;
@@ -440,7 +441,6 @@ body._noScroll{
 
 
 //  section5---------------------------------------------
-
 .section5{
     padding: 0 2rem;
     overflow: hidden;
@@ -567,7 +567,6 @@ body._noScroll{
 
 
 //  section6---------------------------------------------
-
 .section6{
     width: 100%;
     padding: 0;
@@ -719,11 +718,10 @@ body._noScroll{
 }
 
 //  section7---------------------------------------------
-
 .section7{
     height: 100vh;
     max-height: 700px;
-    min-height: 300px;
+    min-height: 20rem;
     padding: 2rem;
     overflow: hidden;
     .title{
@@ -749,6 +747,9 @@ body._noScroll{
         } 
     }
 }
+
+
+//  section8---------------------------------------------
 .section8{
     height: auto;
     margin-bottom: 0;
@@ -767,7 +768,7 @@ body._noScroll{
         }
     }
     .content{
-        padding: 2rem;
+        padding: 4rem 2rem 2rem;
         .item_container{
             overflow: hidden;
             .question{
@@ -777,7 +778,7 @@ body._noScroll{
                 background-color: $color_white; 
                 color: $color_green;
                 border: 3px solid $color_green;
-                padding: 1rem;
+                padding: 1rem 4rem 1rem 1rem;
                 font-weight: 700;
                 font-size: 1.8rem;
                 text-align: left;
@@ -785,13 +786,14 @@ body._noScroll{
                 span{
                     position: absolute;
                     right: 2rem;
-                    transform: rotate(90deg);
+                    top: 50%;
+                    transform: translate(0, -50%) rotate(90deg);
                     transition: all linear .3s;
                 }
             }
             .question._active{
                 span{
-                    transform: rotate(0);
+                    transform: translate(0, -50%) rotate(0);
                 }
             }
             .answer{
@@ -831,8 +833,9 @@ body._noScroll{
     
     
 }
-//  footer---------------------------------------------
 
+
+//  footer---------------------------------------------
 .footer{
     margin-top: 2rem;
     background: $color_yellow;
@@ -850,6 +853,7 @@ body._noScroll{
         align-items: flex-end;
         padding: 1rem 2rem;
         font-weight: 500;
+        position: relative;
         .text_container{ 
             display: block;
             width: 20vw;
@@ -924,14 +928,7 @@ body._noScroll{
 }
     
 
-
-    
-    
-
-
-
-
-/*up_button*/
+//up_button
 .up_button{
     background-color: $color_yellow;
     background-image: url(../assets/images/tree.png);
@@ -951,7 +948,7 @@ body._noScroll{
     transition: all ease 1s;
     opacity: 1;
 }
-.hide{
+.up_button._active{
     transform: translate(0, 0);
 }
 
@@ -1302,32 +1299,7 @@ body._noScroll{
         padding: 0;
         .content{
             padding: 1rem 0;
-            .item_container{
-                overflow: hidden;
-                .question{
-                    display: block;
-                    z-index: 5;
-                    width: 100%;
-                    background-color: $color_white; 
-                    color: $color_green;
-                    border: 3px solid $color_green;
-                    padding: 1rem 2rem 1rem 1rem;
-                    font-weight: 700;
-                    font-size: 1.8rem;
-                    text-align: left;
-                    position: relative;
-                    span{
-                        position: absolute;
-                        right: 2rem;
-                        transform: rotate(90deg);
-                        transition: all linear .3s;
-                    }
-                }
-                .question._active{
-                    span{
-                        transform: rotate(0);
-                    }
-                }
+            .item_container{     
                 .answer{
                     opacity: 0;
                     max-height: 0;

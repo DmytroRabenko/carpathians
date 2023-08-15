@@ -68,6 +68,10 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Roboto", sans-serif;
   overflow-x: hidden;
@@ -87,8 +91,12 @@ body._noScroll {
 
 .wrapper {
   width: 100vw;
-  min-height: 100vh;
   overflow: hidden;
+  background-color: #FFFFFF;
+  background-image: url(../assets/images/bg_repeat.svg);
+  background-size: contain;
+  background-repeat: repeat;
+  background-position: top;
 }
 
 .foolscreen._active {
@@ -220,11 +228,6 @@ body._noScroll {
 
 .main_container {
   width: 100%;
-  background-color: #FFFFFF;
-  background-image: url(../assets/images/bg_repeat.svg);
-  background-size: contain;
-  background-repeat: repeat;
-  background-position: top;
   overflow: hidden;
 }
 
@@ -779,7 +782,7 @@ body._noScroll {
 .section7 {
   height: 100vh;
   max-height: 700px;
-  min-height: 300px;
+  min-height: 20rem;
   padding: 2rem;
   overflow: hidden;
 }
@@ -825,7 +828,7 @@ body._noScroll {
   color: rgb(252, 223, 81);
 }
 .section8 .content {
-  padding: 2rem;
+  padding: 4rem 2rem 2rem;
 }
 .section8 .content .item_container {
   overflow: hidden;
@@ -837,7 +840,7 @@ body._noScroll {
   background-color: #FFFFFF;
   color: #034a40;
   border: 3px solid #034a40;
-  padding: 1rem;
+  padding: 1rem 4rem 1rem 1rem;
   font-weight: 700;
   font-size: 1.8rem;
   text-align: left;
@@ -846,11 +849,12 @@ body._noScroll {
 .section8 .content .item_container .question span {
   position: absolute;
   right: 2rem;
-  transform: rotate(90deg);
+  top: 50%;
+  transform: translate(0, -50%) rotate(90deg);
   transition: all linear 0.3s;
 }
 .section8 .content .item_container .question._active span {
-  transform: rotate(0);
+  transform: translate(0, -50%) rotate(0);
 }
 .section8 .content .item_container .answer {
   opacity: 0;
@@ -903,6 +907,7 @@ body._noScroll {
   align-items: flex-end;
   padding: 1rem 2rem;
   font-weight: 500;
+  position: relative;
 }
 .footer .content .text_container {
   display: block;
@@ -975,7 +980,6 @@ body._noScroll {
   background-image: url(../assets/icon/icon_telegram.png);
 }
 
-/*up_button*/
 .up_button {
   background-color: rgb(252, 223, 81);
   background-image: url(../assets/images/tree.png);
@@ -996,7 +1000,7 @@ body._noScroll {
   opacity: 1;
 }
 
-.hide {
+.up_button._active {
   transform: translate(0, 0);
 }
 
@@ -1335,31 +1339,6 @@ body._noScroll {
   }
   .section8 .content {
     padding: 1rem 0;
-  }
-  .section8 .content .item_container {
-    overflow: hidden;
-  }
-  .section8 .content .item_container .question {
-    display: block;
-    z-index: 5;
-    width: 100%;
-    background-color: #FFFFFF;
-    color: #034a40;
-    border: 3px solid #034a40;
-    padding: 1rem 2rem 1rem 1rem;
-    font-weight: 700;
-    font-size: 1.8rem;
-    text-align: left;
-    position: relative;
-  }
-  .section8 .content .item_container .question span {
-    position: absolute;
-    right: 2rem;
-    transform: rotate(90deg);
-    transition: all linear 0.3s;
-  }
-  .section8 .content .item_container .question._active span {
-    transform: rotate(0);
   }
   .section8 .content .item_container .answer {
     opacity: 0;

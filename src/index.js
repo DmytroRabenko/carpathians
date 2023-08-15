@@ -196,7 +196,7 @@ const addClassOnScroll = (elementTag, scrollThreshold, className) => {
 }  
 addClassOnScroll('.header_content', 1, 'header_active');
 addClassOnScroll('.mob_nav', 1, '_act');
-addClassOnScroll('.up_button', 1000, 'hide');
+addClassOnScroll('.up_button', 1000, '_active');
 
 
 //animation
@@ -420,10 +420,9 @@ fullscreenImageContainer.addEventListener("touchend", () => {
 
 
 
-
+// Information
 const mainBlocks = document.querySelectorAll('.section8 .item_container');
 
-// Додавання обробників подій для кожного блоку
 mainBlocks.forEach((mainBlock) => {
     const clickableBlock = mainBlock.querySelector('.question');
     const hiddenInfo = mainBlock.querySelector('.answer');
