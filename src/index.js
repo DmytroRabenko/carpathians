@@ -412,3 +412,35 @@ fullscreenImageContainer.addEventListener("touchend", () => {
   }
 }, {passive: true});
 
+
+
+
+
+
+
+
+
+
+const mainBlocks = document.querySelectorAll('.section8 .item_container');
+
+// Додавання обробників подій для кожного блоку
+mainBlocks.forEach((mainBlock) => {
+    const clickableBlock = mainBlock.querySelector('.question');
+    const hiddenInfo = mainBlock.querySelector('.answer');
+
+    clickableBlock.addEventListener('click', function() {
+        if (!hiddenInfo.classList.contains('_active')) {
+            hiddenInfo.classList.add('_active');
+            clickableBlock.classList.add('_active');
+        } else {
+            hiddenInfo.classList.remove('_active');
+            clickableBlock.classList.remove('_active');
+        }
+    });
+});
+
+
+
+
+
+
