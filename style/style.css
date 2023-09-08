@@ -724,7 +724,7 @@ body._noScroll {
 }
 .section6 #fullscreenImageContainer #fullscreenImage._zoomed {
   cursor: zoom-out;
-  max-width: none;
+  max-width: 150%;
   max-height: none;
 }
 .section6 #fullscreenImageContainer button {
