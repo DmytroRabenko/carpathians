@@ -660,7 +660,7 @@ body._noScroll{
         #fullscreenImage._zoomed {
             cursor: zoom-out;
             max-width: 150%;
-            max-height: none;
+            max-height: 150%;
         }
         button{
             position: absolute;
@@ -721,7 +721,7 @@ body._noScroll{
 .section7{
     height: 100vh;
     max-height: 700px;
-    min-height: 20rem;
+    min-height: 30rem;
     padding: 2rem;
     overflow: hidden;
     .title{
